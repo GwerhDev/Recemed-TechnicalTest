@@ -1,10 +1,10 @@
-import { PasswordForm } from "../../../components/form/PasswordForm";
-
 export { Page };
+
+import { PasswordForm } from "../../../components/forms/PasswordForm";
 
 function Page() {
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <PasswordForm />
     </div>
   )
