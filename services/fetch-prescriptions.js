@@ -1,6 +1,6 @@
 import { getCookie } from "../utils/getCookie";
 
-export const getRecipes = async () => {
+export const getPrescriptions = async () => {
   const token = getCookie('token') || '';
 
   const response = await fetch(`http://rec-staging.recemed.cl/api/patients/prescriptions?page=${1}`, {
