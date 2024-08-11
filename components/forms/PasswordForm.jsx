@@ -17,7 +17,7 @@ export function PasswordForm(props) {
           <CustomInput
             name="password"
             placeholder="Ingresa tu contraseña"
-            type="text"
+            type="password"
             required
           />
           <PrimaryButton text="ingresar" />
