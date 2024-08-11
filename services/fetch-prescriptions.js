@@ -1,9 +1,9 @@
 import { getCookie } from "../utils/getCookie";
 
-export const getPrescriptions = async () => {
+export const getPrescriptions = async (page) => {
   const token = getCookie('token') || '';
 
-  const response = await fetch(`http://rec-staging.recemed.cl/api/patients/prescriptions?page=${1}`, {
+  const response = await fetch(`http://rec-staging.recemed.cl/api/patients/prescriptions?page=${page}`, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
