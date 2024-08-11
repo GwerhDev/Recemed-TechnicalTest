@@ -46,5 +46,5 @@ function Content({ children }) {
         {children}
       </main>
     </div>
-  )
+  );
 }

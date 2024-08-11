@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { Header } from "../../components/header/Header";
 import { getPrescriptions } from "../../services/fetch-prescriptions";
 import { PrescriptionCard } from "../../components/cards/PrescriptionCard";
-import { Header } from "../../components/header/Header";
 
 function Page() {
   const [error, setError] = useState(null);
@@ -39,7 +39,7 @@ function Page() {
   return (
     <div>
       <Header />
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1440px] mx-auto">
         {error
           ? <p>{error}</p>
           : prescriptions.map((prescription) => (
