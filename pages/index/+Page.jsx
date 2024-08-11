@@ -49,7 +49,7 @@ function Page() {
             ))}
       </ul>
 
-      <div className="flex flex-col items-center mt-4">
+      <div className="flex flex-col items-center mt-4 mb-8">
         <p className="mb-2 text-sm text-gray-600">
           Mostrando {prescriptions.length} {prescriptions.length === 1 ? 'resultado' : 'resultados'}
         </p>
@@ -60,9 +60,6 @@ function Page() {
         >
           Mostrar más
         </button>
-        <p className="mt-2 text-sm text-gray-600">
-          {hasMore ? 'Desplázate hacia abajo para más resultados.' : 'No hay más resultados.'}
-        </p>
       </div>
     </div>
   );
