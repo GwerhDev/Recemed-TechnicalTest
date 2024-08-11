@@ -16,10 +16,10 @@ PageContextProvider.propTypes = {
 
 function PageContextProvider({ pageContext, children }) {
   return <Context.Provider value={pageContext}>{children}</Context.Provider>
-};
+}
 
 /** https://vike.dev/usePageContext */
 function usePageContext() {
-  const pageContext = useContext(Context)
-  return pageContext
-};
+  const pageContext = useContext(Context);
+  return pageContext;
+}
