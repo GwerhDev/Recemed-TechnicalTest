@@ -3,8 +3,8 @@ export const PrimaryButton = (props) => {
 
   return (
     <button type="submit"
-      className="bg-rm-blue-100 text-white hover:bg-rm-blue-200 h-[22px] rounded-lg 
-      uppercase border rounded-[25px] text-[9px] font-semibold w-full">
+      className="bg-rm-blue-100 text-white hover:bg-rm-blue-200 rounded-lg 
+      uppercase border rounded-[30px] font-semibold w-full">
       {text}
     </button>
   );

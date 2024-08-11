@@ -13,7 +13,7 @@ export function RutForm(props) {
             Ingresa a tu Portal
           </h1>
         </li>
-        <li>
+        <li className="flex flex-col gap-[5px]">
           <CustomInput
             name="rut"
             placeholder="Ingresa tu rut"

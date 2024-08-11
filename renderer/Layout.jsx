@@ -1,10 +1,10 @@
 export { Layout }
 
+import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { childrenPropType } from './PropTypeValues';
 import { PageContextProvider } from './usePageContext';
-import './index.css';
 
 Layout.propTypes = {
   pageContext: PropTypes.any,

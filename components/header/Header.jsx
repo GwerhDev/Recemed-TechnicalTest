@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCookie } from "../../utils/getCookie";
+import { ActionButton } from "../buttons/ActionButton";
 import logo from "../../assets/png/logo.png";
 
 export const Header = () => {
@@ -26,9 +27,15 @@ export const Header = () => {
         <span>
           <img src={logo} alt="" width={"100px"} />
         </span>
-        <span className="font-bold uppercase text-[14px]">
-          {`${userData?.first_name} ${userData?.last_name} `}
-        </span>
+        {
+          userData &&
+          <span className="font-bold uppercase text-[14px] flex gap-4">
+            <p>
+              {`${userData?.first_name} ${userData?.last_name} `}
+            </p>
+            <ActionButton text="cerrar sesión" action="/_auth/logout" />
+          </span>
+        }
       </nav>
     </header>
   );

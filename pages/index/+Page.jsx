@@ -4,10 +4,10 @@ import { getPrescriptions } from "../../services/fetch-prescriptions";
 import { PrescriptionCard } from "../../components/cards/PrescriptionCard";
 
 function Page() {
-  const [error, setError] = useState(null);
-  const [prescriptions, setPrescriptions] = useState([]);
   const [page, setPage] = useState(1);
+  const [error, setError] = useState(null);
   const [hasMore, setHasMore] = useState(true);
+  const [prescriptions, setPrescriptions] = useState([]);
 
   useEffect(() => {
     const fetchPrescriptions = async () => {

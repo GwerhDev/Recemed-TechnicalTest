@@ -54,9 +54,10 @@ export function auth(app) {
     }
   });
   
-  app.post('/_auth/logout', (_req, res) => {
+  app.get('/_auth/logout', (_req, res) => {
     res.clearCookie('rut');
+    res.clearCookie('token');
     res.clearCookie('user-data');
-    res.end();
+    res.redirect('/');
   });
 }

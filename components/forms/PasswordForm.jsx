@@ -13,15 +13,15 @@ export function PasswordForm(props) {
             Ingresa a tu Portal
           </h1>
         </li>
-        <li>
+        <li className="flex flex-col gap-[5px]">
           <CustomInput
             name="password"
             placeholder="Ingresa tu contraseña"
             type="text"
             required
           />
+          <PrimaryButton text="ingresar" />
         </li>
-        <PrimaryButton text="ingresar" />
         {errorMessage && <h3>{errorMessage}</h3>}
       </ul>
     </form>
