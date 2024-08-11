@@ -20,8 +20,8 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="text-white">
-      <nav className="bg-rm-blue-100 text-white fixed w-full flex justify-end p-3">
+    <header className="text-white h-16">
+      <nav className="bg-rm-blue-100 text-white fixed w-full flex justify-end p-3 shadow-md">
         <span className="font-semibold">
           {`${userData?.first_name} ${userData?.last_name} `}
         </span>

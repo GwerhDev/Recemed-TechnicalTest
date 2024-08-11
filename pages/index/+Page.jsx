@@ -1,37 +1,35 @@
 import { useEffect, useState } from "react";
 import { getPrescriptions } from "../../services/fetch-prescriptions";
-import { RecipeCard } from "../../components/cards/PrescriptionCard";
+import { PrescriptionCard } from "../../components/cards/PrescriptionCard";
 import { Header } from "../../components/header/Header";
 
 function Page() {
   const [error, setError] = useState(null);
-  const [recipes, setRecipes] = useState(null);
+  const [prescriptions, setPrescriptions] = useState(null);
 
   useEffect(() => {
-    const fetchRecipes = async () => {
+    const fetchPrescriptions = async () => {
       try {
         const response = await getPrescriptions();
-        setRecipes(response);
+        setPrescriptions(response);
       } catch (err) {
         setError(err.message);
       }
     };
-    fetchRecipes();
+    fetchPrescriptions();
   }, []);
 
   return (
     <div>
       <Header />
-      <ul className="">
-        {
-          error
-            ? <p>{error}</p>
-            : recipes?.map((prescriptions) => (
-              <li key={prescriptions.id}>
-                <RecipeCard prescriptions={prescriptions} />
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {error
+          ? <p>{error}</p>
+          : prescriptions?.map((prescription) => (
+              <li key={prescription.id}>
+                <PrescriptionCard prescription={prescription} />
               </li>
-            ))
-        }
+            ))}
       </ul>
     </div>
   );
