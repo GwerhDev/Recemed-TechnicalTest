@@ -19,13 +19,13 @@ function Page() {
 
   const handleLoadMore = () => {
     if (hasMore) {
-      setIsLoadMore(true); // Indicar que se está cargando más datos
+      setIsLoadMore(true);
       setPage(prevPage => prevPage + 1);
     }
   };
 
   const handlePageChange = (newPage) => {
-    setIsLoadMore(false); // Indicar que se está cambiando de página
+    setIsLoadMore(false);
     setPage(newPage);
   };
 
@@ -47,13 +47,14 @@ function Page() {
             ...response.data.filter((prescription) => !prev.some(p => p.id === prescription.id)),
           ]);
         } else {
-          // Reemplazar recetas cuando se cambia la página
           setShowLoader(true);
           const response = await getPrescriptions(page);
           setShowLoader(false);
           setTotalPrescriptions(response?.meta?.total_count);
-          setTotalPages(response?.meta?.total_pages); // Ajusta según tu tamaño de página
+          setTotalPages(response?.meta?.total_pages);
           setPrescriptions(response.data);
+          const hasNextPage = response?.meta["has_next_page?"];
+          setHasMore(hasNextPage);
         }
       } catch (err) {
         setError(err.message);
