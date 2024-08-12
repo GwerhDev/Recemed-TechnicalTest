@@ -15,7 +15,7 @@ function Page() {
   const handleLoadMore = () => {
     if (hasMore) setPage(page + 1);
   };
-  
+
   useEffect(() => {
     const fetchPrescriptions = async () => {
       try {
@@ -26,25 +26,26 @@ function Page() {
 
         const hasNextPage = response?.meta["has_next_page?"];
         setHasMore(hasNextPage);
-  
+
+
         if (!hasNextPage) {
           setHasMore(false);
-        } else {
-          setPrescriptions((prev) => {
-            const newPrescriptions = response.data.filter(
-              (prescription) => !prev.some(p => p.id === prescription.id)
-            );
-            return [...prev, ...newPrescriptions];
-          });
         }
+        setPrescriptions((prev) => {
+          const newPrescriptions = response.data.filter(
+            (prescription) => !prev.some(p => p.id === prescription.id)
+          );
+          return [...prev, ...newPrescriptions];
+        });
       } catch (err) {
         setError(err.message);
       }
     };
-  
+
     fetchPrescriptions();
   }, [page]);
-  
+
+  console.log(prescriptions)
 
   return (
     <div>
