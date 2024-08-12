@@ -41,8 +41,6 @@ function Page() {
     fetchPrescriptions();
   }, [page]);
 
-  console.log(prescriptions)
-
   return (
     <div>
       <Header />
