@@ -3,59 +3,95 @@ import { Header } from "../../components/header/Header";
 import { getPrescriptions } from "../../services/fetch-prescriptions";
 import { PrescriptionCard } from "../../components/cards/PrescriptionCard";
 import { Loader } from "../../components/loader/Loader";
-import LoadMoreButton from "../../components/buttons/ShowMore";
+import LoadMoreButton from "../../components/buttons/LoadMoreButton";
+import Pagination from "../../components/pagination/Pagination";
 
 function Page() {
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
   const [hasMore, setHasMore] = useState(true);
+  const [totalPages, setTotalPages] = useState(0);
   const [showLoader, setShowLoader] = useState(true);
+  const [showButtonLoader, setShowButtonLoader] = useState(false);
   const [prescriptions, setPrescriptions] = useState([]);
   const [totalPrescriptions, setTotalPrescriptions] = useState(0);
+  const [isLoadMore, setIsLoadMore] = useState(false);
 
   const handleLoadMore = () => {
-    if (hasMore) setPage(page + 1);
+    if (hasMore) {
+      setIsLoadMore(true); // Indicar que se está cargando más datos
+      setPage(prevPage => prevPage + 1);
+    }
+  };
+
+  const handlePageChange = (newPage) => {
+    setIsLoadMore(false); // Indicar que se está cambiando de página
+    setPage(newPage);
   };
 
   useEffect(() => {
     const fetchPrescriptions = async () => {
       try {
-        setShowLoader(true);
-        const response = await getPrescriptions(page);
-        setShowLoader(false);
-        setTotalPrescriptions(response?.meta?.total_count);
+        if (isLoadMore) {
+          setShowButtonLoader(true);
+          const response = await getPrescriptions(page);
+          setShowButtonLoader(false);
+          setTotalPrescriptions(response?.meta?.total_count);
+          setTotalPages(Math.ceil(response?.meta?.total_count / 10)); // Ajusta según tu tamaño de página
 
-        const hasNextPage = response?.meta["has_next_page?"];
-        setHasMore(hasNextPage);
+          const hasNextPage = response?.meta["has_next_page?"];
+          setHasMore(hasNextPage);
 
-        setPrescriptions((prev) => {
-          const newPrescriptions = response.data.filter(
-            (prescription) => !prev.some(p => p.id === prescription.id)
-          );
-          return [...prev, ...newPrescriptions];
-        });
+          setPrescriptions((prev) => [
+            ...prev,
+            ...response.data.filter((prescription) => !prev.some(p => p.id === prescription.id)),
+          ]);
+        } else {
+          // Reemplazar recetas cuando se cambia la página
+          setShowLoader(true);
+          const response = await getPrescriptions(page);
+          setShowLoader(false);
+          setTotalPrescriptions(response?.meta?.total_count);
+          setTotalPages(Math.ceil(response?.meta?.total_count / 10)); // Ajusta según tu tamaño de página
+          setPrescriptions(response.data);
+        }
       } catch (err) {
         setError(err.message);
+        setShowLoader(false);
       }
     };
 
     fetchPrescriptions();
-  }, [page]);
+  }, [page, isLoadMore]);
 
   return (
     <div>
       <Header />
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1440px] mx-auto">
-        {error
-          ? <p>{error}</p>
-          : prescriptions.map((prescription) => (
-            <li key={prescription.id}>
-              <PrescriptionCard prescription={prescription} />
-            </li>
-          ))}
-      </ul>
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+      {
+        error && <p>{error}</p>
+      }
       {
         showLoader
+          ?
+          <Loader />
+          :
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1440px] mx-auto">
+            {
+              prescriptions.map((prescription) => (
+                <li key={prescription.id}>
+                  <PrescriptionCard prescription={prescription} />
+                </li>
+              ))
+            }
+          </ul>
+      }
+      {
+        showButtonLoader
           ?
           <Loader />
           :
