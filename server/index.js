@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
@@ -6,10 +5,9 @@ import cookieParser from 'cookie-parser';
 import { root } from './root.js';
 import { renderPage } from 'vike/server';
 import { auth } from './controllers/auth.js';
+import { environment, port } from './config/index.js';
 
-dotenv.config();
-
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = environment === 'production';
 
 startServer();
 
@@ -66,7 +64,6 @@ async function startServer() {
     }
   });
   
-  const port = process.env.PORT || 3000;
   app.listen(port);
   console.log(`Server running at http://localhost:${port}`);
 }
