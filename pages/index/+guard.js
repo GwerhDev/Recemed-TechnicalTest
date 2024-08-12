@@ -12,5 +12,4 @@ export const guard = async (pageContext) => {
     throw render('/login');
   }
 
-  // Realiza otras verificaciones necesarias aquí
 };
