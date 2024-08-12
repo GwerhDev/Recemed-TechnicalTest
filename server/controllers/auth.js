@@ -1,10 +1,12 @@
+import { apiRecemed } from "../config/index.js";
+
 export function auth(app) {
   app.post('/_auth/login', async (req, res) => {
     try {
       const { rut } = req.cookies;
       const { password } = req.body;
 
-      const user = await fetch(`http://rec-staging.recemed.cl/api/users/log_in`, {
+      const user = await fetch(`${apiRecemed}/users/log_in`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -37,7 +39,7 @@ export function auth(app) {
   app.post('/_auth/login/validate_rut', async (req, res) => {
     try {
       const { rut } = req.body;
-      const user = await fetch(`http://rec-staging.recemed.cl/api/users/exists?rut=${rut}`).then(res => res.json());
+      const user = await fetch(`${apiRecemed}/users/exists?rut=${rut}`).then(res => res.json());
 
       if (user?.errors) {
         return res.redirect(`/login?error=${encodeURIComponent(user.errors.detail)}`);
