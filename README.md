@@ -6,7 +6,7 @@ Esta prueba técnica está diseñada para evaluar la implementación de una apli
 
 ## Autenticación de Usuario
 
-Cuando no se detecta un usuario conectado, se utiliza un fichero +guard.js de Vike que renderiza un formulario de inicio de sesión dividido en dos pasos:
+Cuando no se detecta un usuario conectado, se utiliza un [Route Guard](https://vike.dev/routing#route-guards) de Vike que renderiza un formulario de inicio de sesión dividido en dos pasos:
 
 1. **Formulario de RUT**: El primer paso verifica si el usuario existe a través de la [API de Recemed](http://rec-staging.recemed.cl/doc/index.html#/User/RecWeb_Api_UserController_exists). Si el usuario existe, se almacena el RUT en las cookies.
 
