@@ -27,10 +27,6 @@ function Page() {
         const hasNextPage = response?.meta["has_next_page?"];
         setHasMore(hasNextPage);
 
-
-        if (!hasNextPage) {
-          setHasMore(false);
-        }
         setPrescriptions((prev) => {
           const newPrescriptions = response.data.filter(
             (prescription) => !prev.some(p => p.id === prescription.id)
