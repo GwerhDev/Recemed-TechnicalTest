@@ -10,20 +10,32 @@ function Page() {
   const [hasMore, setHasMore] = useState(true);
   const [showLoader, setShowLoader] = useState(true);
   const [prescriptions, setPrescriptions] = useState([]);
+  const [totalPrescriptions, setTotalPrescriptions] = useState(0);
 
+  const handleLoadMore = () => {
+    if (hasMore) setPage(page + 1);
+  };
+  
   useEffect(() => {
     const fetchPrescriptions = async () => {
       try {
         setShowLoader(true);
         const response = await getPrescriptions(page);
         setShowLoader(false);
-        if (!response?.meta["has_next_page?"]) {
+        setTotalPrescriptions(response?.meta?.total_count);
+  
+        const hasNextPage = response?.meta["has_next_page?"];
+        console.log('Has next page:', hasNextPage);
+        setHasMore(hasNextPage);
+  
+        if (!hasNextPage) {
           setHasMore(false);
         } else {
           setPrescriptions((prev) => {
             const newPrescriptions = response.data.filter(
               (prescription) => !prev.some(p => p.id === prescription.id)
             );
+            console.log('New prescriptions:', newPrescriptions);
             return [...prev, ...newPrescriptions];
           });
         }
@@ -31,13 +43,10 @@ function Page() {
         setError(err.message);
       }
     };
-
+  
     fetchPrescriptions();
   }, [page]);
-
-  const handleLoadMore = () => {
-    if (hasMore) setPage(page + 1);
-  };
+  
 
   return (
     <div>
@@ -58,7 +67,7 @@ function Page() {
           :
           <div className="flex flex-col items-center mt-4 mb-8">
             <p className="mb-2 text-sm text-gray-600">
-              Mostrando {prescriptions.length} {prescriptions.length === 1 ? 'resultado' : 'resultados'}
+              Mostrando {prescriptions.length} de {totalPrescriptions} {totalPrescriptions === 1 ? 'resultado' : 'resultados'}
             </p>
             <button
               onClick={handleLoadMore}
