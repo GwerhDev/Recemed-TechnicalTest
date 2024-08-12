@@ -35,7 +35,6 @@ function Page() {
             const newPrescriptions = response.data.filter(
               (prescription) => !prev.some(p => p.id === prescription.id)
             );
-            console.log('New prescriptions:', newPrescriptions);
             return [...prev, ...newPrescriptions];
           });
         }
