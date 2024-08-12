@@ -1,9 +1,10 @@
 import { getCookie } from "../utils/getCookie";
 
 export const getPrescriptions = async (page) => {
-  const userData = getCookie('user-data') || '';
+  const userData = getCookie('user-data');
   if (!userData) return null;
-  const { token } = userData;
+  
+  const { token } = JSON.parse(userData);
 
   const response = await fetch(`http://rec-staging.recemed.cl/api/patients/prescriptions?page=${page}`, {
     headers: {

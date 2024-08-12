@@ -14,7 +14,7 @@ describe('getPrescriptions', () => {
   });
 
   afterAll(() => {
-    global.fetch = undefined;
+    vi.restoreAllMocks();
   });
 
   it('should fetch prescriptions successfully', async () => {
@@ -23,7 +23,7 @@ describe('getPrescriptions', () => {
       meta: { 'has_next_page?': true },
     };
     
-    getCookie.mockReturnValue('mockToken');
+    getCookie.mockReturnValue(JSON.stringify({ token: 'mockToken' }));
     mockFetch.mockResolvedValue({
       ok: true,
       json: async () => mockResponse,
@@ -41,7 +41,7 @@ describe('getPrescriptions', () => {
   });
 
   it('should handle fetch errors', async () => {
-    getCookie.mockReturnValue('mockToken');
+    getCookie.mockReturnValue(JSON.stringify({ token: 'mockToken' }));
     mockFetch.mockResolvedValue({
       ok: false,
       json: async () => ({ message: 'Error fetching data' }),
@@ -51,7 +51,7 @@ describe('getPrescriptions', () => {
   });
 
   it('should handle unexpected errors', async () => {
-    getCookie.mockReturnValue('mockToken');
+    getCookie.mockReturnValue(JSON.stringify({ token: 'mockToken' }));
     mockFetch.mockRejectedValue(new Error('Network error'));
 
     await expect(getPrescriptions(1)).rejects.toThrow('Network error');
