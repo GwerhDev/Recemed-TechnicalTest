@@ -10,9 +10,16 @@ const Pagination = (props) => {
   return (
     <div className="flex justify-center items-center mt-4 mb-8">
       <button
+        onClick={() => handlePageChange(1)}
+        disabled={currentPage === 1}
+        className="px-4 bg-rm-blue-100 text-white rounded disabled:opacity-50"
+      >
+        Primero
+      </button>
+      <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-4 py-2 bg-rm-blue-100 text-white rounded disabled:opacity-50"
+        className="px-4 bg-rm-blue-100 text-white rounded disabled:opacity-50"
       >
         Anterior
       </button>
@@ -22,9 +29,16 @@ const Pagination = (props) => {
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-4 py-2 bg-rm-blue-100 text-white rounded disabled:opacity-50"
+        className="px-4 bg-rm-blue-100 text-white rounded disabled:opacity-50"
       >
         Siguiente
+      </button>
+      <button
+        onClick={() => handlePageChange(totalPages)}
+        disabled={currentPage === totalPages}
+        className="px-4 bg-rm-blue-100 text-white rounded disabled:opacity-50"
+      >
+        Último
       </button>
     </div>
   );

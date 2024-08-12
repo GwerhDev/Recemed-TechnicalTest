@@ -37,7 +37,7 @@ function Page() {
           const response = await getPrescriptions(page);
           setShowButtonLoader(false);
           setTotalPrescriptions(response?.meta?.total_count);
-          setTotalPages(Math.ceil(response?.meta?.total_count / 10)); // Ajusta según tu tamaño de página
+          setTotalPages(response?.meta?.total_pages);
 
           const hasNextPage = response?.meta["has_next_page?"];
           setHasMore(hasNextPage);
@@ -52,7 +52,7 @@ function Page() {
           const response = await getPrescriptions(page);
           setShowLoader(false);
           setTotalPrescriptions(response?.meta?.total_count);
-          setTotalPages(Math.ceil(response?.meta?.total_count / 10)); // Ajusta según tu tamaño de página
+          setTotalPages(response?.meta?.total_pages); // Ajusta según tu tamaño de página
           setPrescriptions(response.data);
         }
       } catch (err) {
