@@ -3,6 +3,7 @@ import { Header } from "../../components/header/Header";
 import { getPrescriptions } from "../../services/fetch-prescriptions";
 import { PrescriptionCard } from "../../components/cards/PrescriptionCard";
 import { Loader } from "../../components/loader/Loader";
+import LoadMoreButton from "../../components/buttons/ShowMore";
 
 function Page() {
   const [page, setPage] = useState(1);
@@ -62,13 +63,7 @@ function Page() {
             <p className="mb-2 text-sm text-gray-600">
               Mostrando {prescriptions.length} de {totalPrescriptions} {totalPrescriptions === 1 ? 'resultado' : 'resultados'}
             </p>
-            <button
-              onClick={handleLoadMore}
-              disabled={!hasMore}
-              className="px-4 py-2 bg-rm-blue-100 text-white rounded disabled:opacity-50"
-            >
-              Mostrar más
-            </button>
+            <LoadMoreButton onClick={handleLoadMore} hasMore={hasMore} />
           </div>
       }
     </div>
