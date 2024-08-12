@@ -23,13 +23,13 @@ export const Header = () => {
 
   return (
     <header className="h-16">
-      <nav className="fixed w-full bg-white flex justify-between items-center p-3 shadow-md pl-4 pr-4">
+      <nav className="fixed w-full bg-white flex justify-between items-center shadow-md p-2 pl-4 pr-4">
         <span>
           <img src={logo} alt="" width={"100px"} />
         </span>
         {
           userData &&
-          <span className="font-bold uppercase text-[14px] flex gap-4">
+          <span className="font-bold uppercase text-[12px] flex gap-4 items-center">
             <p>
               {`${userData?.first_name} ${userData?.last_name} `}
             </p>
