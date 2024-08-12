@@ -10,7 +10,7 @@ Cuando no se detecta un usuario conectado, se utiliza un [Route Guard](https://v
 
 1. **Formulario de RUT**: El primer paso verifica si el usuario existe a través de la [API de Recemed](http://rec-staging.recemed.cl/doc/index.html#/User/RecWeb_Api_UserController_exists). Si el usuario existe, se almacena el RUT en las cookies.
 
-2. **Formulario de Contraseña**: En el segundo paso, se usa el RUT almacenado junto con la contraseña proporcionada por el usuario para validar las credenciales en el [endpoint de login de la API de Recemed](http://rec-staging.recemed.cl/doc/index.html#/UserSession/RecWeb_Api_UserSessionController_create). Si el login es exitoso, se almacena el token y los datos del usuario en las cookies para su uso en solicitudes protegidas.
+2. **Formulario de Contraseña**: En el segundo paso, se usa el RUT almacenado junto con la contraseña proporcionada por el usuario para validar las credenciales en el [endpoint de login de la API de Recemed](http://rec-staging.recemed.cl/doc/index.html#/UserSession/RecWeb_Api_UserSessionController_create). Si el login es exitoso, se almacena los datos del usuario en las cookies, conteniendo el token de Recemed para su posterior uso en solicitudes protegidas.
 
 ## Paginación y Fetching de Datos
 
