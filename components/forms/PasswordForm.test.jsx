@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { PasswordForm } from '../PasswordForm';
+import { PasswordForm } from './PasswordForm';
 import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
