@@ -4,7 +4,7 @@ export { onRenderHtml }
 import ReactDOMServer from 'react-dom/server';
 import { Layout } from './Layout';
 import { escapeInject, dangerouslySkipEscape } from 'vike/server';
-import logoUrl from './assets/ico/favicon.ico';
+import logoUrl from '../assets/ico/favicon.ico';
 import { getPageTitle } from './getPageTitle';
 
 function onRenderHtml(pageContext) {
