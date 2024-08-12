@@ -23,9 +23,8 @@ function Page() {
         const response = await getPrescriptions(page);
         setShowLoader(false);
         setTotalPrescriptions(response?.meta?.total_count);
-  
+
         const hasNextPage = response?.meta["has_next_page?"];
-        console.log('Has next page:', hasNextPage);
         setHasMore(hasNextPage);
   
         if (!hasNextPage) {
