@@ -7,18 +7,8 @@ export const Header = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const userDataCookie = getCookie('user-data');
-
-    if (userDataCookie) {
-      try {
-        const decodedCookie = decodeURIComponent(userDataCookie);
-        const parsedUserData = JSON.parse(decodedCookie)[0];
-        setUserData(parsedUserData);
-
-      } catch (error) {
-        console.error('Error parsing user-data cookie:', error);
-      }
-    }
+    const userData = getCookie('user-data');
+    setUserData(userData);
   }, []);
 
   return (
@@ -31,7 +21,7 @@ export const Header = () => {
           userData &&
           <span className="font-bold uppercase text-[12px] flex gap-4 items-center">
             <p>
-              {`${userData?.first_name} ${userData?.last_name} `}
+              {`${userData?.profiles[0]?.first_name} ${userData?.profiles[0]?.last_name} `}
             </p>
             <ActionButton text="cerrar sesión" action="/_auth/logout" />
           </span>

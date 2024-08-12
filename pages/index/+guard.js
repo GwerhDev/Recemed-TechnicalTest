@@ -1,11 +1,16 @@
 import { render } from 'vike/abort';
 
 export const guard = async (pageContext) => {
-  const cookieHeader = pageContext?.headers?.cookie || "";
-  const token = cookieHeader.split('; ').find(row => row.startsWith('token='))
-                             ?.split('=')[1];
+  const cookieHeader = pageContext?.headers?.cookie || '';
+  const userData = cookieHeader
+    .split('; ')
+    .find(row => row.startsWith('user-data='))
+    ?.split('=')[1] || null;
 
-  if (!token) {
+  if (!userData) {
+    // Redirige al login si no se encuentra el userData
     throw render('/login');
   }
+
+  // Realiza otras verificaciones necesarias aquí
 };

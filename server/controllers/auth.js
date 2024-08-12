@@ -18,13 +18,7 @@ export function auth(app) {
         return res.redirect(`/login/next-step?error=${encodeURIComponent(user.errors.detail)}`);
 
       } else if (user?.data) {
-        const { token, profiles } = user.data;
-
-        res.cookie('token', token, {
-          maxAge: 24 * 60 * 60 * 1000,
-          sameSite: 'Lax'
-        });
-        res.cookie('user-data', JSON.stringify(profiles), {
+        res.cookie('user-data', JSON.stringify(user.data), {
           maxAge: 24 * 60 * 60 * 1000,
           sameSite: 'Lax'
         });
@@ -62,7 +56,6 @@ export function auth(app) {
 
   app.get('/_auth/logout', (_req, res) => {
     res.clearCookie('rut');
-    res.clearCookie('token');
     res.clearCookie('user-data');
     res.redirect('/');
   });
