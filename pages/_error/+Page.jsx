@@ -15,7 +15,9 @@ function Page() {
   )
 }
 
-function Center({ children }) {
+function Center(props) {
+  const { children } = props || null;
+  
   return (
     <div
       style={{
