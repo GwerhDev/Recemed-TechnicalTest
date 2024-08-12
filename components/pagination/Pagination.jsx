@@ -14,7 +14,7 @@ const Pagination = (props) => {
         disabled={currentPage === 1}
         className="px-4 bg-rm-blue-100 text-[12px] text-white rounded disabled:opacity-50"
       >
-        Primero
+        Primera
       </button>
       <button
         onClick={() => handlePageChange(currentPage - 1)}
@@ -38,7 +38,7 @@ const Pagination = (props) => {
         disabled={currentPage === totalPages}
         className="px-4 bg-rm-blue-100 text-[12px] text-white rounded disabled:opacity-50"
       >
-        Último
+        Última
       </button>
     </div>
   );
