@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import { getPrescriptions } from './fetch-prescriptions';
 import { getCookie } from '../utils/getCookie';
 
-// Mock the dependencies
 vi.mock('../utils/getCookie', () => ({
   getCookie: vi.fn(),
 }));
