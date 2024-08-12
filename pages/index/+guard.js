@@ -11,5 +11,4 @@ export const guard = async (pageContext) => {
     // Redirige al login si no se encuentra el userData
     throw render('/login');
   }
-
 };
