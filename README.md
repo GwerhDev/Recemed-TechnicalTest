@@ -14,7 +14,7 @@ Cuando no se detecta un usuario conectado, se utiliza un [Route Guard](https://v
 
 ## Paginación y Fetching de Datos
 
-Una vez autenticado el usuario, se redirige a la página principal (CSR) donde se realiza un fetching de datos desde el [endpoint de prescripciones médicas de la API de Recemed](http://rec-staging.recemed.cl/doc/index.html#/Prescription/RecWeb_Api_Patient_PrescriptionController_index). Este proceso incluye la paginación tipo "ver más", utilizando el parámetro `page` en la petición a la API de prescripciones.
+Una vez autenticado el usuario, se redirige a la página principal (CSR) donde se realiza un fetching de datos desde el [endpoint de prescripciones médicas de la API de Recemed](http://rec-staging.recemed.cl/doc/index.html#/Prescription/RecWeb_Api_Patient_PrescriptionController_index). Este proceso incluye la paginación tipo tradicional y tipo "ver más", utilizando el parámetro `page` en la petición a la API de prescripciones.
 
 ## Comandos para Levantar el Proyecto
 
