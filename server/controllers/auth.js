@@ -1,12 +1,10 @@
-import { apiRecemed } from "../config";
-
 export function auth(app) {
   app.post('/_auth/login', async (req, res) => {
     try {
       const { rut } = req.cookies;
       const { password } = req.body;
 
-      const user = await fetch(`${apiRecemed}/users/log_in`, {
+      const user = await fetch(`http://rec-staging.recemed.cl/api/users/log_in`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -20,9 +18,9 @@ export function auth(app) {
       } else if (user?.data) {
         const { token, profiles } = user.data;
 
-        res.cookie('token', token, { // No usar httpOnly
+        res.cookie('token', token, {
           maxAge: 24 * 60 * 60 * 1000,
-          sameSite: 'Lax' // Opcional: aumenta la seguridad contra CSRF
+          sameSite: 'Lax'
         });
         res.cookie('user-data', JSON.stringify(profiles), {
           maxAge: 24 * 60 * 60 * 1000,
@@ -39,7 +37,7 @@ export function auth(app) {
   app.post('/_auth/login/validate_rut', async (req, res) => {
     try {
       const { rut } = req.body;
-      const user = await fetch(`${apiRecemed}/users/exists?rut=${rut}`).then(res => res.json());
+      const user = await fetch(`http://rec-staging.recemed.cl/api/users/exists?rut=${rut}`).then(res => res.json());
 
       if (user?.errors) {
         return res.redirect(`/login?error=${encodeURIComponent(user.errors.detail)}`);
