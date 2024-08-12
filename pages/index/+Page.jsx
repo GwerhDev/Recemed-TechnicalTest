@@ -17,11 +17,11 @@ function Page() {
         setShowLoader(true);
         const response = await getPrescriptions(page);
         setShowLoader(false);
-        if (response.length === 0) {
+        if (!response?.meta["has_next_page?"]) {
           setHasMore(false);
         } else {
           setPrescriptions((prev) => {
-            const newPrescriptions = response.filter(
+            const newPrescriptions = response.data.filter(
               (prescription) => !prev.some(p => p.id === prescription.id)
             );
             return [...prev, ...newPrescriptions];
