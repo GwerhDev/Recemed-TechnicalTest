@@ -1,4 +1,4 @@
-# Prueba técnica para puesto Full Stack | Recemed
+# Prueba técnica para puesto Front End Developer | Recemed
 
 ## Descripción
 
