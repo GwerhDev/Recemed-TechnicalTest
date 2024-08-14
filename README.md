@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Esta prueba técnica está diseñada para evaluar la implementación de una aplicación Full Stack que incluye autenticación y manejo de prescripciones médicas utilizando la API de Recemed.
+Esta prueba técnica está diseñada para evaluar la implementación de una aplicación Front End que incluye autenticación y manejo de prescripciones médicas utilizando la API de Recemed.
 
 ## Autenticación de Usuario
 
